@@ -17,11 +17,9 @@ class CreateTitleView(APIView):
         serializer = self.serializer_class(data=request.data)
         
         if serializer.is_valid():
-            url = serializer.data.url
+            url = serializer.data.get('url')
             title = Title(url=url)
             title.save()
+            return Response(TitleSerializer(title).data, status=status.HTTP_201_CREATED)
 
-
-
-
-        return Response(TitleSerializer(title).data, status=status.HTTP_201_CREATED)
+        return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)

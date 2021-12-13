@@ -9,4 +9,4 @@ class TitleSerializer(serializers.ModelSerializer):
 class CreateTitleSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Title
-        fields = ('url')
+        fields = ('url',)
