@@ -4,5 +4,9 @@ from .models import Title
 class TitleSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Title
-        fields = ('id', 'title', 'favIcon', 'created_at', 'favorited')
+        fields = ('id', 'title', 'url', 'favIcon', 'created_at', 'favorited')
         
+class CreateTitleSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Title
+        fields = ('url')
