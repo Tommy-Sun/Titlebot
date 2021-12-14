@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.core.files import File
 from rest_framework import generics, status
+from rest_framework import response
 from .models import Title
 from .serializers import TitleSerializer, CreateTitleSerializer
 from rest_framework.views import APIView
@@ -19,6 +21,9 @@ class CreateTitleView(APIView):
         if serializer.is_valid():
             url = serializer.data.get('url')
             title = Title(url=url)
+            successfulDownload = title.downloadIcon()
+            if successfulDownload == True:
+                title.favIcon = "images/" + url + ".ico"
             title.save()
             return Response(TitleSerializer(title).data, status=status.HTTP_201_CREATED)
 
