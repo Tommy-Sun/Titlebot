@@ -15,7 +15,7 @@ class Title(models.Model):
     def __str__(self):
         return self.url
 
-    def downloadIcon(self):
+    def download_icon(self):
         favIcon_url  = 'http://www.google.com/s2/favicons?domain=' + self.url
         response = requests.get(favIcon_url, stream=True)
         if response.status_code == 200:    
@@ -24,7 +24,23 @@ class Title(models.Model):
                 shutil.copyfileobj(response.raw, file)   
                 with open("frontend/static/images/default.ico", "wb") as f:
                     if f.raw == response.raw:
-                        print("yessssss sir")
                         return False
             return True
         return False
+    
+    def get_title(self):
+        if self.url[:8] != 'https://' or self.url[:7] != 'http://':
+            url = 'https://' + self.url
+        response = requests.get(url)
+        if response.status_code == 200:
+            r_html = response.text
+            try:
+                title = r_html[r_html.find('<title>') + 7 : r_html.find('</title>')]
+            except:
+                print("title could not be found in received html")
+        else:
+            title = ''
+
+        return title
+
+    

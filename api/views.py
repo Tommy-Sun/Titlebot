@@ -21,9 +21,10 @@ class CreateTitleView(APIView):
         if serializer.is_valid():
             url = serializer.data.get('url')
             title = Title(url=url)
-            successfulDownload = title.downloadIcon()
+            successfulDownload = title.download_icon()
             if successfulDownload == True:
                 title.favIcon = "images/" + url + ".ico"
+            title.title = title.get_title()
             title.save()
             return Response(TitleSerializer(title).data, status=status.HTTP_201_CREATED)
 
