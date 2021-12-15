@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import HomePage from "./HomePage";
+import Title from "./title";
+import TitleGroup from "./title_group";
 import { Container, Grid, Input, Button, Icon } from "semantic-ui-react";
 import styles from '../../static/css/modular.css';
 
@@ -9,15 +10,24 @@ class App extends Component {
         super(props);
         this.state = {
             url: '',
-
+            allData: [],
         };
+    }
+    componentDidMount() {
+        this.getData()
+    }
+
+    getData() {
+        const requestOptions = {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"},
+        };
+        fetch("/api", requestOptions)
+            .then((response) => (response.json()))
+            .then((data) => this.setState({ allData: data }))
     }
 
     onSubmit = () => {
-        console.log(this.state.url);
-        console.log(JSON.stringify({
-            url: this.state.url,    
-        }));
         const requestOptions = {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -25,9 +35,13 @@ class App extends Component {
                 url: this.state.url,    
             }),
         };
+      
         fetch("/api/create-title", requestOptions)
             .then((response) => (response.json()))
-            .then((data) => console.log(data));
+            .then((data) => console.log(data))
+        
+        this.getData()
+        this.setState({ url: '' })
     }
 
     render()
@@ -45,10 +59,12 @@ class App extends Component {
                         </Row>
                         <Row columns={4}>
                             <Column width={2} />
-                            <Column width={10} textAlign="center" >
-                                <Input placeholder="Input a website here..." fluid onChange={event => this.setState({ url: event.target.value })} />
+                            <Column width={9} textAlign="center" >
+                                <Input placeholder="Input a website here..." fluid onChange={event => this.setState({ url: event.target.value })}>
+                                 
+                                </Input>
                             </Column>
-                            <Column width={2} textAlign="left">
+                            <Column width={3} textAlign="left">
                                 <Button fluid animated='vertical' color='black' size='medium' onClick={this.onSubmit}>
                                     <Button.Content hidden><Icon name='search' /></Button.Content>
                                     <Button.Content visible>Search Title</Button.Content>
@@ -56,17 +72,25 @@ class App extends Component {
                             </Column>
                             <Column width={2} />
                         </Row>
+                        <Row columns={2}>
+                            <Column textAlign="center">
+                                Total History:
+                            </Column>
+                            <Column textAlign="center">
+                                Favorites:
+                            </Column>
+                        </Row>
                         <Row columns={2} divided>
                             <Column>
                                 <Row>
-                                    <HomePage />
+                                    <TitleGroup data={this.state.allData} />
                                 </Row>
                                 <Row>
-                                    <HomePage />
+                                    <Title />
                                 </Row>
                             </Column>
                             <Column>
-                                <HomePage />
+                                <Title />
                             </Column>
                         </Row>
                     </Grid>
