@@ -1,5 +1,5 @@
 .content { /* This is to create a "sticky" footer effect where the footer is always at the bottom of the screen. (Footer is 200px in height) */
-    min-height: calc(100vh - 170px);
+    min-height: calc(100vh - 160px);
     padding: 50px !important;
 }
 

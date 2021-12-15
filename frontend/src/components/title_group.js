@@ -1,18 +1,28 @@
 import React, { Component } from "react";
 import { Segment, Container } from "semantic-ui-react";
+import Title from "./title";
 
 const TitleGroup = (props) => {
 
     return (
         <Container>
-            {props.data.map((dataPoint, index) => 
+            {props.data.slice(0).reverse().map((dataPoint, index) => 
                 {
                     const title = dataPoint.title;
+                    const url = dataPoint.url;
+                    const id = dataPoint.id;
+                    const favIcon = dataPoint.favIcon;
+                    const favorited = dataPoint.favorited;
     
                     return (
-                        <Segment key={index}>
-                            {title}    
-                        </Segment>
+                        <Title 
+                            index = {index}
+                            title={title}
+                            url = {url}
+                            id = {id}
+                            favIcon = {favIcon}
+                            favorited = {favorited}
+                         />
                     )
                 })
             }
