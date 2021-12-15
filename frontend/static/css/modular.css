@@ -1,0 +1,12 @@
+.footer1 {
+    color: white;
+    background-color: black;
+    margin-top: 20px;
+    height: 80px;
+    padding-top: 35px;
+}
+
+.footer2 {
+    background-image: linear-gradient(black,rgb(75, 75, 75));
+    height: 100px
+}
