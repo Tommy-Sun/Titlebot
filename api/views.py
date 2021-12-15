@@ -1,21 +1,20 @@
 from django.shortcuts import render
 from django.core.files import File
 from rest_framework import generics, status
-from rest_framework import response
 from .models import Title
 from .serializers import TitleSerializer, CreateTitleSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Create your views here.
-class TitleView(generics.CreateAPIView):
+class TitleView(generics.ListAPIView):
     queryset = Title.objects.all()
     serializer_class = TitleSerializer
 
 class CreateTitleView(APIView):
     serializer_class = CreateTitleSerializer
 
-    def post(self, request, format=None):
+    def post(self, request):
         serializer = self.serializer_class(data=request.data)
         
         if serializer.is_valid():

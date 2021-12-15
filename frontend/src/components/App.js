@@ -20,27 +20,33 @@ class App extends Component {
 
         return (
             <Container fluid>
-                <Grid padded>
-                    <Row>
-                        <Column textAlign="center">
-                            <h1>Title Bot</h1>
-                        </Column>
-                    </Row>
-                    <Row columns={3}>
-                        <Column />
-                        <Column textAlign="center" >
-                            <Input placeholder="Input a website here..." fluid />
-                        </Column>
-                        <Column />
-                    </Row>
-                    <Row divided>
-                        <Column></Column>
-                        <Column></Column>
-                    </Row>
-                </Grid>
-                
-                <h1>{this.props.name}</h1>
-                <HomePage />
+                <Container className={styles.content} fluid>
+                    <Grid padded>
+                        <Row>
+                            <Column textAlign="center">
+                                <h1>Title Bot</h1>
+                            </Column>
+                        </Row>
+                        <Row columns={3}>
+                            <Column width={2} />
+                            <Column width={12} textAlign="center" >
+                                <Input placeholder="Input a website here..." fluid />
+                            </Column>
+                            <Column width={2} />
+                        </Row>
+                        <Row columns={2} divided>
+                            <Column>
+                                <Row>
+                                    <HomePage />
+                                </Row>
+                                <Row>
+                                    <HomePage />
+                                </Row>
+                            </Column>
+                            <Column></Column>
+                        </Row>
+                    </Grid>
+                </Container>              
                 <Container fluid textAlign="center" className={styles.footer1}><div>Designed by Thomas Kebschull</div></Container>
                 <Container fluid textAlign="center" className={styles.footer2} />
             </Container>
