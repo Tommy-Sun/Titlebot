@@ -6,6 +6,7 @@ from .serializers import TitleSerializer, CreateTitleSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+
 # Create your views here.
 class TitleView(generics.ListAPIView):
     queryset = Title.objects.all()

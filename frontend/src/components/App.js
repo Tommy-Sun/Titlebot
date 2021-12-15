@@ -15,6 +15,19 @@ class App extends Component {
 
     onSubmit = () => {
         console.log(this.state.url);
+        console.log(JSON.stringify({
+            url: this.state.url,    
+        }));
+        const requestOptions = {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                url: this.state.url,    
+            }),
+        };
+        fetch("/api/create-title", requestOptions)
+            .then((response) => (response.json()))
+            .then((data) => console.log(data));
     }
 
     render()
