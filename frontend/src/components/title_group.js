@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import Title from "./title";
 
 const TitleGroup = (props) => {
@@ -16,7 +16,7 @@ const TitleGroup = (props) => {
     
                     return (
                         <Title 
-                            index = {index}
+                            key = {index}
                             title={title}
                             url = {url}
                             id = {id}

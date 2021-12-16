@@ -8,14 +8,15 @@ import styles from '../../static/css/modular.css';
 class App extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             url: '',
             allData: [],
+            favData: [],
         };
     }
     componentDidMount() {
         this.getData();
-        console.log(this.state.allData);
     }
 
     getData() {
@@ -25,7 +26,19 @@ class App extends Component {
         };
         fetch("/api", requestOptions)
             .then((response) => (response.json()))
-            .then((data) => this.setState({ allData: data }));
+            .then((data) => this.setState({ allData: data }))
+            .then(() => console.log("New Data: ", this.state.allData))
+            .then(() => this.getFavoritedData());
+    }
+    
+    getFavoritedData() {
+        let newFavData = []
+        for (const datapoint of this.state.allData) {
+            if (datapoint.favorited) {
+                newFavData.push(datapoint);
+            }
+        } 
+        this.setState({ favData: newFavData });
     }
 
     onSubmit = () => {
@@ -39,11 +52,10 @@ class App extends Component {
       
         fetch("/api/create-title", requestOptions)
             .then((response) => (response.json()))
-            .then((data) => console.log(data));
+            .then((data) => console.log(data))
+            .then(() => this.getData());
         
-        this.getData();
         this.setState({ url: '' });
-        console.log(this.state.allData);
     }
 
     render()
@@ -62,7 +74,7 @@ class App extends Component {
                         <Row columns={4}>
                             <Column width={2} />
                             <Column width={9} textAlign="center" >
-                                <Input placeholder="Input a website here..." fluid value={this.state.url} onChange={event => this.setState({ url: event.target.value })} />
+                                <Input placeholder="Input a website here..." fluid value={this.state.url} onSubmit={this.onSubmit} onChange={event => this.setState({ url: event.target.value })} />
                             </Column>
                             <Column width={3} textAlign="left">
                                 <Button fluid animated='vertical' color='black' size='medium' onClick={this.onSubmit}>
@@ -74,23 +86,22 @@ class App extends Component {
                         </Row>
                         <Row columns={2}>
                             <Column textAlign="center">
-                                Total History:
+                                <h2>Total History:</h2>
                             </Column>
                             <Column textAlign="center">
-                                Favorites:
+                                <h2>Favorites:</h2>
                             </Column>
                         </Row>
                         <Row columns={2} divided>
-                            <Column>
+                            <Column textAlign="center">
                                 <Row>
-                                    <TitleGroup data={this.state.allData} />
-                                </Row>
-                                <Row>
-                                    <Title />
+                                    <TitleGroup data={this.state.allData}/>
                                 </Row>
                             </Column>
                             <Column>
-                                <Title />
+                                <Row>
+                                   
+                                </Row>
                             </Column>
                         </Row>
                     </Grid>

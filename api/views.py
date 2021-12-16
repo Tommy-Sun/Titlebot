@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.core.files import File
 from rest_framework import generics, status
 from .models import Title
 from .serializers import TitleSerializer, CreateTitleSerializer

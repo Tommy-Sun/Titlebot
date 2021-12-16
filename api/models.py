@@ -35,9 +35,11 @@ class Title(models.Model):
         if response.status_code == 200:
             r_html = response.text
             try:
-                title = r_html[r_html.find('<title') + 7 : r_html.find('</title>')]
+                title = r_html[r_html.find('<title') : r_html.find('</title>')]
                 if '<title>' not in title:
-                    title = title[title.find('>') + 1 : title.find('</title>')]
+                    title = title[title.find('>') + 1 :]
+                else:
+                    title = title[7:]
             except:
                 print("title could not be found in received html")
         else:

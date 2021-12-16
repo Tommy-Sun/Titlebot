@@ -17,3 +17,9 @@ html, body {
     display: flex;
     overflow: scroll;
 }
+
+img {
+    height: 42px;
+    width: auto;
+    padding-top: 10px;
+}
