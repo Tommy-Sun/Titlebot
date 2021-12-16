@@ -6,7 +6,7 @@ module.exports = (env, argv) => {
         entry: "./src/index.js",
         output: {
           path: path.resolve(__dirname, "./static/frontend"),
-          filename: "[name].js",
+          filename: "main.js",
         },
         module: {
           rules: [

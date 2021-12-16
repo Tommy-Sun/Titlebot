@@ -28,7 +28,8 @@ class App extends Component {
             .then((response) => (response.json()))
             .then((data) => this.setState({ allData: data }))
             .then(() => console.log("New Data: ", this.state.allData))
-            .then(() => this.getFavoritedData());
+            .then(() => this.getFavoritedData())
+            .then(() => console.log("New Fav Data: ", this.state.favData));
     }
     
     getFavoritedData() {

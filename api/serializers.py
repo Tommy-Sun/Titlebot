@@ -10,3 +10,8 @@ class CreateTitleSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Title
         fields = ('url',)
+
+class UpdateFavoriteSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Title
+        fields = ('id',)

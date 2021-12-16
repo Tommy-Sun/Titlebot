@@ -6,19 +6,19 @@ import styles from "../../static/css/modular.css";
 class Title extends Component {
     constructor(props) {
         super(props);
-        
-        this.state = {
-            
-        };
     }
-    onClick() {
+    onClick = () => {
+        console.log("this ID is: ",this.props.id);
         const requestOptions = {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                url: this.state.url,    
+                id: this.props.id,    
             }),
         };
+        fetch("/api/update-favorite", requestOptions)
+            .then((response) => (response.json()))
+            .then((data) => console.log(data));
     }
 
     render () {
@@ -40,14 +40,15 @@ class Title extends Component {
                             <Container><img src={favIcon} /></Container>
                         </Column>
                         <Column width={12} textAlign="left">
-                            <h3>{title}</h3>
+                            <h3>{title} {id}</h3>
                         </Column>
                         <Column width={2}>
                             <Container>{starIcon}</Container>
                         </Column>
                     </Row>
                 </Grid>       
-            </Segment>);
+            </Segment>
+            );
     }
 }
 
