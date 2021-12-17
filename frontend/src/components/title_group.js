@@ -9,7 +9,6 @@ class TitleGroup extends Component {
     }
 
     onFavClick = () => {
-        console.log("calling on FavClick");
         this.props.onGetNewData();
     }
 

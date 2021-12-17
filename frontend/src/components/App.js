@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import Title from "./title";
 import TitleGroup from "./title_group";
 import { Container, Grid, Input, Button, Icon } from "semantic-ui-react";
 import styles from '../../static/css/modular.css';
@@ -50,7 +49,6 @@ class App extends Component {
                 url: this.state.url,    
             }),
         };
-      
         fetch("/api/create-title", requestOptions)
             .then((response) => (response.json()))
             .then((data) => console.log(data))
