@@ -5,7 +5,7 @@ Hello! I used React.js for the frontend and Django for the backend. The backend 
 It is recommended to use a virtual environment whenever you run django for dependency management purposes. To do so please "cd" to the root of the project and run "pip install virtualenv" and then run "virtualenv -p python3 venv". On Mac, you can activate the virtual environment by running, ". venv/bin/activate". 
 
 #### To download dependencies:
-1. From the root of the project (path/to/Titlebot), run, "pip install -r . requirements.txt" 
+1. From the root of the project (path/to/Titlebot), run, "pip install -r ./requirements.txt" 
 2. Run, "cd frontend"
 3. Run, "npm install"
 
