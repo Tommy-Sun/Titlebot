@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Segment, Grid, Icon, Container } from "semantic-ui-react";
-import styles from "../../static/css/modular.css";
-
 
 class Title extends Component {
     constructor(props) {
         super(props);
     }
+
     onClick = () => {
         console.log("this ID is: ",this.props.id);
         const requestOptions = {
@@ -18,12 +17,13 @@ class Title extends Component {
         };
         fetch("/api/update-favorite", requestOptions)
             .then((response) => (response.json()))
-            .then((data) => console.log(data));
+            .then((data) => console.log(data))
+            .then(() => this.props.onFavClick());
     }
 
     render () {
 
-        const {title, url, id, favIcon, favorited} = this.props
+        const {title, favIcon, favorited} = this.props
         const { Row, Column } = Grid;
         let starIcon;
         if (favorited) {
@@ -40,7 +40,7 @@ class Title extends Component {
                             <Container><img src={favIcon} /></Container>
                         </Column>
                         <Column width={12} textAlign="left">
-                            <h3>{title} {id}</h3>
+                            <h3>{title}</h3>
                         </Column>
                         <Column width={2}>
                             <Container>{starIcon}</Container>
@@ -51,6 +51,5 @@ class Title extends Component {
             );
     }
 }
-
 
 export default Title;

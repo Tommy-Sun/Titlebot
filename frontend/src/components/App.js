@@ -8,7 +8,7 @@ import styles from '../../static/css/modular.css';
 class App extends Component {
     constructor(props) {
         super(props);
-        
+        this.getData = this.getData.bind(this);
         this.state = {
             url: '',
             allData: [],
@@ -96,12 +96,12 @@ class App extends Component {
                         <Row columns={2} divided>
                             <Column textAlign="center">
                                 <Row>
-                                    <TitleGroup data={this.state.allData}/>
+                                    <TitleGroup data={this.state.allData} onGetNewData={this.getData} />
                                 </Row>
                             </Column>
                             <Column>
                                 <Row>
-                                   
+                                    <TitleGroup data={this.state.favData} onGetNewData={this.getData} />
                                 </Row>
                             </Column>
                         </Row>
