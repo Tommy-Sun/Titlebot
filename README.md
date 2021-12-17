@@ -2,7 +2,7 @@
 
 Hello! I used React.js for the frontend and Django for the backend. The backend has an api app and makes use of django's relational database. That way, all changes are saved permenantly. Additionally, the added bonus feature on this app is a "favorites" attribute of each title. Favoriting any title will add it to the Favorites list. 
 
-It is recommended to use a virtual environment whenever you run django for dependency management purposes. To do so please "cd" to the root of the project and run "pip install virtualenv" and then run "virtualenv -p python3 venv". On Mac, you can activate the virtual environment by running, ". venv/bin/activate". 
+It is recommended to use a virtual environment whenever you run django for dependency management purposes. To do so please "cd" to the root of the project and run "pip install virtualenv" and then run "virtualenv -p python3 venv". On Mac, you can activate the virtual environment by running, ". venv/bin/activate". (On Windows, run, "venv\Scripts\activate").
 
 #### To download dependencies:
 1. From the root of the project (path/to/Titlebot), run, "pip install -r ./requirements.txt" 
@@ -14,8 +14,9 @@ It is recommended to use a virtual environment whenever you run django for depen
 1. From the root of the project (path/to/Titlebot), run, "cd frontend"
 2. Run, "npm run dev"
 3. Open another terminal. "cd" to the root of the project again
-4. Run, "python3 manage.py runserver"
-5. Open "http://127.0.0.1:8000/" in a modern web browser.
+4. Run, "python3 manage.py migrate"
+5. Run, "python3 manage.py runserver"
+6. Open "http://127.0.0.1:8000/" in a modern web browser.
 
 #### NOTES:
 1. The app's frontend components are located in [TitleBot/frontend/src/components](TitleBot/frontend/src/components)
