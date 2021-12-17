@@ -22,3 +22,4 @@ It is recommended to use a virtual environment whenever you run django for depen
 1. The app's frontend components are located in [TitleBot/frontend/src/components](TitleBot/frontend/src/components)
 2. The app's backend is in the API app. The main files to look at here are [TitleBot/api/views.py](TitleBot/api/views.py) and [TitleBot/api/models.py](TitleBot/api/models.py).
 3. One tough problem I encountered while making this app was getting the title of a given web page's html. You can find the code in the [TitleBot/api/models.py](TitleBot/api/models.py) file.
+4. Thank you for taking the time to check out my project :)
