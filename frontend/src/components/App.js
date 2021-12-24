@@ -23,7 +23,7 @@ class App extends Component {
             method: 'GET',
             headers: {"Content-Type": "application/json"},
         };
-        fetch("/api", requestOptions)
+        fetch("/api/", requestOptions)
             .then((response) => (response.json()))
             .then((data) => this.setState({ allData: data }))
             .then(() => console.log("New Data: ", this.state.allData))
