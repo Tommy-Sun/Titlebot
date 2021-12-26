@@ -42,5 +42,13 @@ module.exports = (env, argv) => {
                 'process.env.NODE_ENV' : JSON.stringify(argv.mode)
             }),
         ],
+        devServer: {
+          open: true,
+          
+          watchOptions:{
+              poll: true,
+              ignored: "/node_modules/"
+          }   
+      }
     }
 }
