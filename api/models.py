@@ -22,9 +22,6 @@ class Title(models.Model):
             response.raw.decode_content = True
             with open("frontend/static/images/" + self.url + ".ico", "wb") as file:
                 shutil.copyfileobj(response.raw, file)   
-                with open("frontend/static/images/default.ico", "wb") as f:
-                    if f.raw == response.raw:
-                        return False
             return True
         return False
     
